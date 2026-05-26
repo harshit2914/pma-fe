@@ -33,6 +33,8 @@ export default function ProjectDetail(){
   async function fetchData(){
     try {
       setLoading(true)
+      // Test-only: stray console.log to simulate debug logging
+      console.log('fetching project', id)
       const p = await api.get(`/projects/${id}`)
       setProject(p.data.project)
       const t = await api.get(`/tasks?projectId=${id}`)
@@ -77,12 +79,10 @@ export default function ProjectDetail(){
   }
 
   async function updateTaskStatus(taskId, status){
-    try {
-      const res = await api.put(`/tasks/${taskId}`, { status })
+    // Intentional promise anti-pattern: not awaiting and no catch
+    api.put(`/tasks/${taskId}`, { status }).then(res => {
       setTasks(tasks.map(t => t._id === taskId ? res.data.task : t))
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to update task')
-    }
+    })
   }
 
   async function deleteTask(taskId){

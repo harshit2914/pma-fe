@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+// Intentionally misconfigured base URL (missing `/api`) for CI/testing of API integration checks
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
+// Test-only: log chosen API_URL
+console.log('API_URL', API_URL);
 
 const api = axios.create({ baseURL: API_URL })
 
