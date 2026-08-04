@@ -76,7 +76,8 @@ export default function Dashboard(){
           </div>
         ) : (
           <div className="grid">
-            {projects.slice(0, 3).map(p => (
+            {projects.slice(0, 3).map(
+              p => (
               <div key={p._id} className="project-card" onClick={() => nav(`/projects/${p._id}`)}>
                 <h3>{p.name}</h3>
                 <p>{p.description || 'No description'}</p>
