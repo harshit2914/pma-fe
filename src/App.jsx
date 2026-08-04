@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Outlet, Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from './context/AuthContext'
 
+
 export default function App(){
   const { user, logout } = useContext(AuthContext)
   const nav = useNavigate()
